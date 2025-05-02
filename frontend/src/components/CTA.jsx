@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { LogIn, UserPlus, Mail, Send } from "lucide-react";
 
@@ -83,9 +82,33 @@ const CTA = () => {
   };
 
   return (
-    <div className="py-20 relative bg-gray-900" id="contact">
-      <div className="container px-4 relative z-10 mx-auto">
-        <div className="rounded-xl border border-gray-700 bg-gray-900 p-8 md:p-16">
+    <div className="h-full w-full flex items-center justify-center relative bg-gradient-to-b from-gray-900 to-black" id="contact">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -ml-48 -mb-48"></div>
+        
+        {/* Stars effect */}
+        <div className="stars-container absolute inset-0">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white"
+              style={{
+                width: `${Math.random() * 2 + 1}px`,
+                height: `${Math.random() * 2 + 1}px`,
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.8 + 0.2,
+                animation: `twinkle ${Math.random() * 5 + 3}s infinite`
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      
+      <div className="container px-4 py-12 relative z-10 mx-auto flex items-center justify-center">
+        <div className="rounded-xl border border-gray-700 bg-gray-900/80 backdrop-blur-md p-8 md:p-16 max-w-3xl w-full shadow-2xl">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               Connect with Us for Smarter Air Quality Insights
@@ -98,7 +121,7 @@ const CTA = () => {
               {/* Register Button */}
               <button
                 onClick={() => setIsRegisterOpen(true)}
-                className="rounded-full bg-blue-600 hover:bg-blue-700 px-8 py-3 text-base font-medium gap-2 text-white flex items-center"
+                className="rounded-full bg-blue-600 hover:bg-blue-700 px-8 py-3 text-base font-medium gap-2 text-white flex items-center w-full sm:w-auto justify-center"
               >
                 <UserPlus className="h-5 w-5" />
                 Support
@@ -107,7 +130,7 @@ const CTA = () => {
               {/* Sign In Button */}
               <button
                 onClick={() => setIsSignInOpen(true)}
-                className="rounded-full bg-transparent hover:bg-white/5 px-8 py-3 text-base font-medium gap-2 border border-gray-600 text-white flex items-center"
+                className="rounded-full bg-transparent hover:bg-white/5 px-8 py-3 text-base font-medium gap-2 border border-gray-600 text-white flex items-center w-full sm:w-auto justify-center"
               >
                 <LogIn className="h-5 w-5" />
                 Contact Us
@@ -201,63 +224,46 @@ const CTA = () => {
                         type="email"
                         placeholder="Enter your email"
                         className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white"
-                        required
                       />
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-white block">
-                        Password
+                        Message
                       </label>
-                      <input
-                        name="password"
-                        type="password"
-                        placeholder="••••••••"
-                        className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white"
-                        required
+                      <textarea
+                        rows={4}
+                        placeholder="How can we help you?"
+                        className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md flex items-center justify-center"
+                      className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md flex items-center justify-center"
                     >
-                      <LogIn className="h-4 w-4 mr-2" />
-                      Sign In
+                      <Send className="h-4 w-4 mr-2" />
+                      Send Message
                     </button>
                   </form>
                 </div>
               </div>
             )}
 
-            {/* Newsletter subscription form */}
-            <div className="mt-10 pt-6 border-t border-gray-700">
-              <h3 className="text-xl font-medium mb-3 text-white">To Get More Updates</h3>
-              <p className="text-gray-400 mb-4">Send Message to our Website</p>
-
-              <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <div className="flex-1">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-md p-2 text-white h-12"
-                  />
-                </div>
-                <button
-                  className="bg-teal-600 hover:bg-teal-700 h-12 px-6 text-white rounded-md flex items-center justify-center"
-                >
-                  <Send className="h-4 w-4 mr-2" />
-                  Send Message
-                </button>
-              </form>
-            </div>
-
-            {/* Toast Notification */}
+            {/* Toast Message */}
             {toast && (
-              <div className={`fixed bottom-4 right-4 bg-gray-800 border ${toast.variant === "destructive" ? "border-red-500" : "border-green-500"
-                } text-white p-4 rounded-lg shadow-lg z-50 max-w-md`}>
-                <h4 className="font-semibold">{toast.title}</h4>
-                <p className="text-gray-300">{toast.description}</p>
+              <div
+                className={`fixed bottom-4 right-4 p-4 rounded-md text-white ${
+                  toast.variant === "destructive" ? "bg-red-600" : "bg-green-600"
+                } shadow-lg flex items-center transition-opacity`}
+              >
+                <div className="mr-2">
+                  {toast.variant === "destructive" ? "✕" : "✓"}
+                </div>
+                <div>
+                  <h4 className="font-medium">{toast.title}</h4>
+                  <p className="text-sm opacity-90">{toast.description}</p>
+                </div>
               </div>
             )}
           </div>

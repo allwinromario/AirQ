@@ -1,11 +1,14 @@
-
 import React from "react";
 import { cn } from "@/lib/utils";
 
 const About = () => {
   return (
-    <div className="py-20 relative" id="about">
-      <div className="container px-4">
+    <div className="h-screen w-full flex items-center justify-center relative bg-space-dark" id="about">
+      {/* Background decorative elements */}
+      <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-space-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-space-teal/5 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div className="container px-4 py-12 md:py-0 h-full flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="relative">

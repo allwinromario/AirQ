@@ -1,116 +1,119 @@
-# AirQ: Downscaling Satellite-based Air Quality Maps using AI/ML
+# AirQ - Air Quality Monitoring Application
 
-# 🌍 Project Overview
+AirQ is a web application for monitoring air quality with user authentication using MongoDB.
 
-AirQ is an AI-powered solution that enhances low-resolution satellite air quality data into high-resolution pollution maps, specifically targeting Nitrogen Dioxide (NO₂) levels. By integrating satellite imagery, ground sensors, and weather data, we enable precise air quality monitoring for better urban planning and pollution control.
+## Project Structure
 
-# Problem Statement:
+- `frontend/` - React.js frontend application
+- `backend/` - Node.js Express backend with MongoDB integration
 
-* Traditional air quality monitoring lacks fine spatial resolution.
+## Prerequisites
 
-* Satellite data is often too coarse for city-level analysis.
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB Atlas account
 
-* Need for AI-driven downscaling to improve decision-making.
+## MongoDB Setup
 
-# Solution:
+1. Create a free MongoDB Atlas account at [https://www.mongodb.com/cloud/atlas/register](https://www.mongodb.com/cloud/atlas/register)
+2. Create a new cluster (the free tier is sufficient for development)
+3. Under "Database Access", create a new database user with read/write permissions
+4. Under "Network Access", add your IP address or allow access from anywhere for development
+5. Under "Databases", click "Connect" on your cluster, select "Connect your application", and copy the connection string
 
-✔ Deep Learning-based super-resolution for air quality maps
+## Backend Setup
 
-✔ Multi-source data fusion (satellite + sensors + weather)
-
-✔ Interactive visualization for policymakers
-
-# ✨ Key Features
-
-* High-resolution NO₂ mapping (downscaled from Sentinel-5P data)
-
-* Gap-filling predictions for areas with missing data
-
-* Real-time AQI dashboard
-
-* Scalable model for global city-level analysis
-
-# 🛠 Tech Stack
-
-| Category         | Technologies Used |
-|------------------|-------------------|
-| **Languages**    | Python, TypeScript, JavaScript, HTML/CSS |
-| **ML Frameworks** | TensorFlow, PyTorch, Scikit-Learn |
-| **Data Processing** | Pandas, NumPy |
-| **Visualization** | Matplotlib, Seaborn, Plotly |
-| **Geospatial**   | Shapely, Rasterio, Leaflet.js, Google Earth Engine |
-| **Cloud/APIs**   | AWS, Azure, Flask, Google Cloud API, AQICN API |
-| **Frontend**     | React, Next.js, JavaScript |
-| **Version Control** | Git, GitHub |
-
-# 🔬 Methodology
-
-* Data Collection – Satellite (NASA Sentinel), ground sensors (AQICN), weather data
-
-* Preprocessing – Noise removal, normalization, alignment
-
-* Feature Engineering – Extract NO₂, weather, and geospatial features
-
-* Model Training – CNN, Random Forest, Deep Learning
-
-* Validation – Compare with real-world sensor data
-
-* Deployment – Cloud-based API (AWS/Azure)
-
-## ⚙ Installation
-
-### Prerequisites
-- Python 3.8+
-- Node.js 14+
-- Git
-
-### Setup Instructions
-
-1. **Clone the repository**:
+1. Navigate to the backend directory:
    ```bash
-   git clone https://github.com/allwinromario/AirQ.git
-   cd AirQ
+   cd backend
+   ```
 
-2. **Set up a Python virtual environment**:
+2. Install dependencies:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # Linux/Mac
-   venv\Scripts\activate    # Windows
-
-3. **Install Python dependencies**:
-   ```bash
-   pip install -r requirements.txt
-
-4. **Set up the frontend**:
-   ```bash
-   cd frontend
    npm install
+   ```
 
-# Running the Application
-5. **Frontend Development Server**:
+3. Create a `.env` file in the backend directory with the following variables:
+   ```
+   PORT=5000
+   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/airq?retryWrites=true&w=majority
+   JWT_SECRET=your_strong_secret_key
+   JWT_EXPIRY=30d
+   ```
+
+   - Replace `<username>`, `<password>`, and `<cluster>` with your MongoDB Atlas credentials
+   - Generate a strong JWT_SECRET (you can use an online generator or run `require('crypto').randomBytes(32).toString('hex')` in Node.js REPL)
+
+4. Start the backend server:
+   ```bash
+   npm run dev
+   ```
+
+## Frontend Setup
+
+1. Navigate to the frontend directory:
    ```bash
    cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the frontend directory with the following variables:
+   ```
+   VITE_API_URL=http://localhost:5000/api
+   ```
+
+4. Start the frontend development server:
+   ```bash
    npm run dev
-   
-6. **Sentinel-5P NO₂ Data Downscaling**:
-    ```bash
-    cd downscale
-    python -m streamlit run app.py
+   ```
 
-# 📊 Results
+5. Access the application at [http://localhost:8080](http://localhost:8080)
 
-✅ Fine-grained NO₂ maps (10x higher resolution than raw satellite data)
+## Features
 
-✅ Predicted AQI for areas with missing data
+- User registration and login with MongoDB
+- JWT-based authentication
+- Air quality monitoring (to be implemented)
+- Responsive design
 
-✅ Policy-friendly visualizations for urban planners
+## Tech Stack
 
-# 👥 Team
+- **Frontend**:
+  - React
+  - Vite
+  - Tailwind CSS
+  - Axios for API requests
 
-* V. Allwin Romario Fernando
+- **Backend**:
+  - Node.js
+  - Express
+  - MongoDB with Mongoose
+  - JWT for authentication
 
-* Vidhi Dattatraya Kamat
+## API Endpoints
 
-* Mohammed Yousuf Furqan
+### Authentication
 
-* Fathima Kohnain
+- **Register a new user**: `POST /api/auth/register`
+  ```json
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@example.com",
+    "password": "password123"
+  }
+  ```
+
+- **Login**: `POST /api/auth/login`
+  ```json
+  {
+    "email": "john@example.com",
+    "password": "password123"
+  }
+  ```
+
+- **Get current user**: `GET /api/auth/me` (Requires authentication token)

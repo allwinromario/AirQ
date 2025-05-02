@@ -1,6 +1,50 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+
+// Add these styles to a stylesheet in the useEffect
+const addHeroAnimationStyles = () => {
+  const styleSheet = document.createElement('style');
+  styleSheet.type = 'text/css';
+  styleSheet.innerText = `
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    
+    @keyframes cityTwinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes shine {
+      0%, 100% { left: -100%; }
+      50%, 50.1% { left: 100%; }
+    }
+    
+    .animate-floating {
+      animation: floating 4s ease-in-out infinite;
+    }
+    
+    .animate-floating-delayed {
+      animation: floating 5s ease-in-out 1s infinite;
+    }
+    
+    .animate-floating-reverse {
+      animation: floating 6s ease-in-out 0.5s infinite reverse;
+    }
+    
+    .animate-floating-long {
+      animation: floating 7s ease-in-out 0.2s infinite;
+    }
+  `;
+  document.head.appendChild(styleSheet);
+  return styleSheet;
+};
 
 const Hero = () => {
   const starsContainerRef = useRef(null);
@@ -8,6 +52,9 @@ const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
+    // Add the animation styles
+    const styleElement = addHeroAnimationStyles();
+    
     if (!starsContainerRef.current) return;
 
     const container = starsContainerRef.current;
@@ -46,6 +93,11 @@ const Hero = () => {
         container.removeChild(container.firstChild);
       }
       window.removeEventListener('scroll', handleScroll);
+      
+      // Remove the style element when component unmounts
+      if (styleElement) {
+        document.head.removeChild(styleElement);
+      }
     };
   }, []);
 
@@ -79,7 +131,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-950">
+    <div className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-gray-950" id="hero">
       {/* Stars container */}
       <div ref={starsContainerRef} className="absolute inset-0 z-0" />
 
@@ -104,25 +156,6 @@ const Hero = () => {
 
       {/* Hero gradient overlay - ensures text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-950/80 via-gray-950/40 to-gray-950/80 z-10" />
-
-      {/* Animated Logo */}
-      <div
-        className={`absolute top-8 left-8 z-30 transition-all duration-700 ${loaded ? "opacity-100 transform translate-y-0" : "opacity-0 transform -translate-y-4"
-          }`}
-        style={{
-          transform: `translateY(${scrollY * -0.05}px)`
-        }}
-      >
-        <div className="text-white text-2xl font-bold flex items-center">
-          <span className="relative">
-            Air
-            <span className="text-blue-400 font-bold">Q</span>
-            {/* Shiny effects */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/0 via-blue-400/70 to-blue-400/0 opacity-50 blur-sm animate-shine"></div>
-            <div className="absolute -right-2 -top-2 w-4 h-4 bg-blue-400 rounded-full opacity-70 blur-sm animate-pulse"></div>
-          </span>
-        </div>
-      </div>
 
       <div
         className="container px-4 pt-20 pb-32 relative z-20"
@@ -201,57 +234,44 @@ const Hero = () => {
         }}
       >
         <div className="backdrop-blur-md bg-white/10 px-3 py-2 rounded-lg border border-white/10">
-          <span className="text-xs text-white">NO2 Levels</span>
+          <span className="text-xs text-white">NO₂ Levels</span>
           <div className="w-20 h-1 bg-white/20 rounded-full mt-1">
-            <div className="w-1/2 h-full bg-cyan-400 rounded-full"></div>
+            <div className="w-1/4 h-full bg-orange-400 rounded-full"></div>
           </div>
         </div>
       </div>
 
-      {/* CSS for animations */}
-      <style>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 1; }
-        }
-        
-        @keyframes cityTwinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.8; }
-        }
-        
-        @keyframes floating {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes shine {
-          0%, 100% { left: -100%; }
-          50%, 50.1% { left: 100%; }
-        }
-        
-        .animate-floating {
-          animation: floating 4s ease-in-out infinite;
-        }
-        
-        .animate-floating-delayed {
-          animation: floating 5s ease-in-out infinite;
-          animation-delay: 1s;
-        }
-        
-        .animate-shine {
-          animation: shine 4s linear infinite;
-        }
-        
-        .animate-pulse {
-          animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-          0%, 100% { opacity: 0.3; transform: scale(0.8); }
-          50% { opacity: 0.8; transform: scale(1.2); }
-        }
-      `}</style>
+      {/* CO2 Levels indicator */}
+      <div
+        className={`absolute left-24 top-1/3 hidden md:block transition-all duration-1000 delay-1200 ${loaded ? "opacity-100 animate-floating-reverse" : "opacity-0"
+          }`}
+        style={{
+          transform: `translateY(${scrollY * -0.06}px)`
+        }}
+      >
+        <div className="backdrop-blur-md bg-white/10 px-3 py-2 rounded-lg border border-white/10">
+          <span className="text-xs text-white">CO₂ Levels</span>
+          <div className="w-20 h-1 bg-white/20 rounded-full mt-1">
+            <div className="w-4/5 h-full bg-red-400 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Meteorological indicator */}
+      <div
+        className={`absolute left-1/3 bottom-1/4 hidden md:block transition-all duration-1000 delay-1400 ${loaded ? "opacity-100 animate-floating-long" : "opacity-0"
+          }`}
+        style={{
+          transform: `translateY(${scrollY * -0.04}px)`
+        }}
+      >
+        <div className="backdrop-blur-md bg-white/10 px-3 py-2 rounded-lg border border-white/10">
+          <span className="text-xs text-white">Data Sources</span>
+          <div className="w-20 h-1 bg-white/20 rounded-full mt-1">
+            <div className="w-full h-full bg-purple-400 rounded-full"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

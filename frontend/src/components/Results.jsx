@@ -1,12 +1,11 @@
-
 import React from "react";
 import { ChartBar, AreaChart } from "lucide-react";
 
 const Results = () => {
   return (
-    <div className="py-16 relative" id="results">
-      <div className="container px-7">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+    <div className="h-screen w-full flex items-center justify-center relative bg-gray-950/95" id="results">
+      <div className="container px-7 py-12 md:py-0 h-full flex flex-col justify-center">
+        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
             Results
           </h2>
@@ -26,7 +25,7 @@ const Results = () => {
           <ResultCard
             title="Sentinel-5P NO2 Data Downscaling"
             description="This application processes and visualizes Sentinel-5P satellite NO₂ data through interactive maps that display global pollution patterns. It enhances the data quality by downscaling low-resolution air quality measurements to higher resolution using multiple scientific techniques including Gaussian smoothing, bilinear/cubic interpolation, and machine learning-based regression. The tool provides comprehensive analysis capabilities by comparing original and processed data through difference maps and statistical metrics, while also offering export options to facilitate further research and reporting."
-            link="https://vidhi2004-downscalingi-website-app-ypw6co.streamlit.app/"
+            link="https://vidhi2004-downscalingi-website-app-ezsu40.streamlit.app/"
             className="w-full md:w-1/2 bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition"
           />
 
@@ -37,7 +36,11 @@ const Results = () => {
           />*/}
         </div>
       </div>
-    </div >
+
+      {/* Background decorative elements */}
+      <div className="absolute top-0 right-0 w-60 h-60 bg-blue-500/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-60 h-60 bg-indigo-500/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none"></div>
+    </div>
   );
 };
 
