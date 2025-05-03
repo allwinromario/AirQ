@@ -87,7 +87,7 @@ const CTA = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -mr-48 -mt-48"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -ml-48 -mb-48"></div>
-        
+
         {/* Stars effect */}
         <div className="stars-container absolute inset-0">
           {Array.from({ length: 50 }).map((_, i) => (
@@ -106,7 +106,7 @@ const CTA = () => {
           ))}
         </div>
       </div>
-      
+
       <div className="container px-4 py-12 relative z-10 mx-auto flex items-center justify-center">
         <div className="rounded-xl border border-gray-700 bg-gray-900/80 backdrop-blur-md p-8 md:p-16 max-w-3xl w-full shadow-2xl">
           <div className="max-w-3xl mx-auto text-center">
@@ -253,9 +253,8 @@ const CTA = () => {
             {/* Toast Message */}
             {toast && (
               <div
-                className={`fixed bottom-4 right-4 p-4 rounded-md text-white ${
-                  toast.variant === "destructive" ? "bg-red-600" : "bg-green-600"
-                } shadow-lg flex items-center transition-opacity`}
+                className={`fixed bottom-4 right-4 p-4 rounded-md text-white ${toast.variant === "destructive" ? "bg-red-600" : "bg-green-600"
+                  } shadow-lg flex items-center transition-opacity`}
               >
                 <div className="mr-2">
                   {toast.variant === "destructive" ? "✕" : "✓"}
