@@ -1,11 +1,12 @@
+
 import React from "react";
 import { ChartBar, AreaChart } from "lucide-react";
 
 const Results = () => {
   return (
-    <div className="h-screen w-full flex items-center justify-center relative bg-gray-950/95" id="results">
-      <div className="container px-7 py-12 md:py-0 h-full flex flex-col justify-center">
-        <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
+    <div className="py-16 relative" id="results">
+      <div className="container px-7">
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
             Results
           </h2>
@@ -36,15 +37,7 @@ const Results = () => {
           />*/}
         </div>
       </div>
-<<<<<<< HEAD
-
-=======
-      
->>>>>>> 1fceb127496b5f913cec21f50f5013c93415e9b5
-      {/* Background decorative elements */}
-      <div className="absolute top-0 right-0 w-60 h-60 bg-blue-500/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-60 h-60 bg-indigo-500/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none"></div>
-    </div>
+    </div >
   );
 };
 

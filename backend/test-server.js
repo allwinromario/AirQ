@@ -1,16 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-<<<<<<< HEAD
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-=======
->>>>>>> 1fceb127496b5f913cec21f50f5013c93415e9b5
 
 const app = express();
 const port = 8000;
 
-<<<<<<< HEAD
 // MongoDB Connection String - Replace with your friend's MongoDB credentials or keep yours if you've added their IP
 const MONGODB_URI = "mongodb+srv://vidhi:vidhi@cluster0.azzkkjh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const JWT_SECRET = "your_jwt_secret_key";
@@ -100,10 +96,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-=======
-// Enable CORS
-app.use(cors());
->>>>>>> 1fceb127496b5f913cec21f50f5013c93415e9b5
 app.use(express.json());
 
 // Base route
@@ -111,7 +103,6 @@ app.get('/', (req, res) => {
   res.json({ message: 'Test server is running!' });
 });
 
-<<<<<<< HEAD
 // Register route
 app.post('/api/auth/register', async (req, res) => {
   try {
@@ -260,42 +251,3 @@ app.get('/api/auth/me', async (req, res) => {
 app.listen(port, '0.0.0.0', () => {
   console.log(`Test server running on port ${port}, bound to all interfaces (0.0.0.0)`);
 });
-=======
-// Auth routes for testing
-app.post('/api/auth/register', (req, res) => {
-  console.log('Register request received:', req.body);
-  res.json({ 
-    success: true, 
-    message: 'Test registration successful',
-    token: 'test-token',
-    user: {
-      id: '123',
-      firstName: req.body.firstName || 'Test',
-      lastName: req.body.lastName || 'User',
-      email: req.body.email || 'test@example.com',
-      role: 'user'
-    }
-  });
-});
-
-app.post('/api/auth/login', (req, res) => {
-  console.log('Login request received:', req.body);
-  res.json({ 
-    success: true, 
-    message: 'Test login successful',
-    token: 'test-token',
-    user: {
-      id: '123',
-      firstName: 'Test',
-      lastName: 'User',
-      email: req.body.email || 'test@example.com',
-      role: 'user'
-    }
-  });
-});
-
-// Start server
-app.listen(port, () => {
-  console.log(`Test server running on port ${port}`);
-}); 
->>>>>>> 1fceb127496b5f913cec21f50f5013c93415e9b5
