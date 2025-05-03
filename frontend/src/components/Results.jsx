@@ -36,7 +36,11 @@ const Results = () => {
           />*/}
         </div>
       </div>
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 1fceb127496b5f913cec21f50f5013c93415e9b5
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-60 h-60 bg-blue-500/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-60 h-60 bg-indigo-500/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none"></div>
