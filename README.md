@@ -18,7 +18,7 @@ AirQ is a comprehensive web application for monitoring real-time air quality dat
 AirQ/
 ├── frontend/           # React frontend application
 ├── backend/            # Node.js Express backend 
-└── downscale/          # Data processing components
+└── downscale/          # Air quality data processing and visualization
 ```
 
 ## ✨ Features
@@ -28,6 +28,42 @@ AirQ/
 - **📱 Responsive Design** - Works across devices and screen sizes
 - **🔄 REST API** - Comprehensive backend API for data access
 - **🛡️ Data Security** - MongoDB integration for secure data storage
+- **🔍 Data Downscaling** - Advanced spatial downscaling of NO₂ satellite data
+
+## 📉 Downscale Application
+
+The downscale application is a vital component of AirQ that processes and visualizes air quality data. Built with Streamlit, it offers:
+
+### Key Features
+
+- **Satellite Data Processing** - Import and process Sentinel-5P NO₂ satellite imagery
+- **Advanced Downscaling Methods** - Multiple techniques including:
+  - Gaussian Smoothing
+  - Bilinear Interpolation
+  - Cubic Spline
+  - Regression-Based Approach
+- **Interactive Visualization** - Compare original, processed, and downscaled data
+- **Statistical Analysis** - View distribution and metrics of air quality data
+- **Export Options** - Save visualizations in various formats (PNG, PDF, CSV)
+
+### Using the Downscale Application
+
+1. Navigate to the downscale directory:
+   ```bash
+   cd downscale
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Launch the application:
+   ```bash
+   streamlit run app.py
+   ```
+
+4. Access the app in your browser at [http://localhost:8501](http://localhost:8501)
 
 ## 🚀 Getting Started
 
@@ -36,6 +72,7 @@ AirQ/
 - Node.js (v14 or higher)
 - npm or yarn
 - MongoDB Atlas account
+- Python 3.7+ (for downscale application)
 
 ### MongoDB Setup
 
@@ -118,6 +155,17 @@ AirQ/
 - MongoDB with Mongoose
 - JSON Web Tokens (JWT)
 
+### Downscale Application
+- Python
+- Streamlit
+- Matplotlib
+- NumPy
+- Pandas
+- scikit-learn
+- SciPy
+- Cartopy
+- Rasterio
+
 ## 🔌 API Endpoints
 
 ### Authentication
@@ -127,6 +175,13 @@ AirQ/
 | POST | `/api/auth/register` | Register a new user | `{ "firstName": "John", "lastName": "Doe", "email": "john@example.com", "password": "password123" }` |
 | POST | `/api/auth/login` | Login existing user | `{ "email": "john@example.com", "password": "password123" }` |
 | GET | `/api/auth/me` | Get current user info | Requires authentication token |
+
+## 👥 Contributors
+
+- **V. Allwin Fernando**
+- **Vidhi Kamat**
+- **Fathima Kohnain**
+- **Yusuf Furqan**
 
 ## 🤝 Contributing
 
