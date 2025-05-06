@@ -1,4 +1,4 @@
-# 🌬️ AirQ - Air Quality Monitoring Platform
+# 🌬️ AirQ - Downscaling of Satellite based air quality map using AI/ML
 
 <div align="center">
   
@@ -183,14 +183,4 @@ The downscale application is a vital component of AirQ that processes and visual
 - **Fathima Kohnain**
 - **Yusuf Furqan**
 
-## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📜 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 📞 Support
-
-For support, please open an issue in the GitHub repository or contact the project maintainers.
