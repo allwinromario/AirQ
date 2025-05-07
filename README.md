@@ -23,19 +23,15 @@ AirQ/
 
 ## ✨ Features
 
-- **🔐 Secure Authentication** - User registration and login with JWT
-- **📊 Air Quality Monitoring** - Real-time environmental data tracking
 - **📱 Responsive Design** - Works across devices and screen sizes
-- **🔄 REST API** - Comprehensive backend API for data access
-- **🛡️ Data Security** - MongoDB integration for secure data storage
-- **🔍 Data Downscaling** - Advanced spatial downscaling of NO₂ satellite data
-- **AI/ML-Driven Downscaling** – Utilizes advanced models (CNNs, Random Forest, deep learning) to enhance the spatial resolution of satellite air quality data.
-- **Multi-Source Data Integration** – Combines satellite imagery, ground-based sensor data, and meteorological factors for robust predictions.
-- **High-Resolution Air Quality Maps** – Generates detailed NO₂ concentration maps for urban and rural regions.
-- **Validation with Real-World Data** – Ensures model accuracy and robustness using independent, real-world air quality datasets.
+- **🔍AI/ML-Driven Downscaling** – Utilizes advanced models (CNNs, Random Forest, deep learning) to enhance the spatial resolution of satellite air quality data.
+- **🛡️Multi-Source Data Integration** – Combines satellite imagery, ground-based sensor data, and meteorological factors for robust predictions.
+- **🔄High-Resolution Air Quality Maps** – Generates detailed NO₂ concentration maps for urban and rural regions.
+- **📊Validation with Real-World Data** – Ensures model accuracy and robustness using independent, real-world air quality datasets.
 - **Decision Support** – Provides actionable insights for policymakers and environmental agencies to improve air quality assessment and pollution control.
 - **Scalable & Adaptable** – Applicable to various regions and adaptable to different pollutants and data sources.
 - **Interactive Visualization & Export** – Visualize, compare, and export high-resolution air quality data and analytics.
+- **🔐 Secure Authentication** - User registration and login with JWT
 
 ## 📉 Downscale Application
 
