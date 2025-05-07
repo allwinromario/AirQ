@@ -10,7 +10,7 @@
 
 ## 📋 Overview
 
-AirQ is a comprehensive web application for monitoring real-time air quality data with secure user authentication powered by MongoDB. The platform provides an intuitive interface for tracking air quality metrics and visualizing environmental data.
+AirQ leverages Artificial Intelligence and Machine Learning to transform coarse-resolution satellite-based air quality data into high-resolution, actionable maps. By integrating satellite imagery, ground sensor readings, and meteorological parameters, AirQ generates precise NO₂ concentration maps, supporting better decision-making for researchers, policymakers, and environmental agencies. This project aims to bridge the gap between low-resolution air quality data and the high spatial resolution needed for effective pollution management and public health protection.
 
 ## 🏗️ Project Structure
 
@@ -29,6 +29,13 @@ AirQ/
 - **🔄 REST API** - Comprehensive backend API for data access
 - **🛡️ Data Security** - MongoDB integration for secure data storage
 - **🔍 Data Downscaling** - Advanced spatial downscaling of NO₂ satellite data
+- **AI/ML-Driven Downscaling** – Utilizes advanced models (CNNs, Random Forest, deep learning) to enhance the spatial resolution of satellite air quality data.
+- **Multi-Source Data Integration** – Combines satellite imagery, ground-based sensor data, and meteorological factors for robust predictions.
+- **High-Resolution Air Quality Maps** – Generates detailed NO₂ concentration maps for urban and rural regions.
+- **Validation with Real-World Data** – Ensures model accuracy and robustness using independent, real-world air quality datasets.
+- **Decision Support** – Provides actionable insights for policymakers and environmental agencies to improve air quality assessment and pollution control.
+- **Scalable & Adaptable** – Applicable to various regions and adaptable to different pollutants and data sources.
+- **Interactive Visualization & Export** – Visualize, compare, and export high-resolution air quality data and analytics.
 
 ## 📉 Downscale Application
 
