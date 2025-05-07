@@ -1,13 +1,5 @@
 # 🌬️ AirQ - Downscaling of Satellite based air quality map using AI/ML
 
-<div align="center">
-  
-![Air Quality](https://img.shields.io/badge/Air%20Quality-Monitoring-brightgreen)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-
-</div>
-
 ## 📋 Overview
 
 AirQ leverages Artificial Intelligence and Machine Learning to transform coarse-resolution satellite-based air quality data into high-resolution, actionable maps. By integrating satellite imagery, ground sensor readings, and meteorological parameters, AirQ generates precise NO₂ concentration maps, supporting better decision-making for researchers, policymakers, and environmental agencies. This project aims to bridge the gap between low-resolution air quality data and the high spatial resolution needed for effective pollution management and public health protection.
