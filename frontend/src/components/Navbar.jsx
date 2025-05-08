@@ -17,13 +17,13 @@ const Navbar = ({ scrollToTop }) => {
   useEffect(() => {
     // Initial section detection
     detectActiveSection();
-    
+
     // Event handlers
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
       detectActiveSection();
     };
-    
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -42,7 +42,7 @@ const Navbar = ({ scrollToTop }) => {
     // Add event listeners
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
-    
+
     // Clean up
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -55,7 +55,7 @@ const Navbar = ({ scrollToTop }) => {
     // Get all sections by their ID
     const sections = ["hero", "results", "about", "contact"];
     let currentSection = activeSection;
-    
+
     // Determine which section is most visible
     for (const section of sections) {
       const element = document.getElementById(section);
@@ -68,7 +68,7 @@ const Navbar = ({ scrollToTop }) => {
         }
       }
     }
-    
+
     if (currentSection !== activeSection) {
       setActiveSection(currentSection);
     }
@@ -79,22 +79,22 @@ const Navbar = ({ scrollToTop }) => {
     if (event) {
       event.preventDefault();
     }
-    
+
     console.log("Home navigation triggered");
-    
+
     // Get the hero section
     const heroSection = document.getElementById("hero");
-    
+
     if (heroSection) {
       // Use the same smooth scrolling approach as other sections
       const sectionTop = heroSection.getBoundingClientRect().top + window.pageYOffset;
-      
+
       // Apply smooth scrolling animation
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
-      
+
       // Additional animation for visual consistency with other nav items
       setTimeout(() => {
         heroSection.scrollIntoView({
@@ -102,7 +102,7 @@ const Navbar = ({ scrollToTop }) => {
           block: "start"
         });
       }, 10);
-      
+
       // Also try the direct scrollToTop if available
       if (scrollToTop) {
         scrollToTop();
@@ -114,10 +114,10 @@ const Navbar = ({ scrollToTop }) => {
         behavior: 'smooth'
       });
     }
-    
+
     // Update active section
     setActiveSection("hero");
-    
+
     // Add a subtle flash effect to the hero section to indicate activation
     if (heroSection) {
       heroSection.classList.add('section-activated');
@@ -139,23 +139,23 @@ const Navbar = ({ scrollToTop }) => {
       handleHomeNavigation(event);
       return;
     }
-    
+
     console.log(`Scrolling to section: ${id}`);
-    
+
     // For other sections
     const section = document.getElementById(id);
     if (section) {
       console.log(`Found section element with id: ${id}`);
-      
+
       // Get the offset of the section from the top
       const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
-      
+
       // Scroll to the section
       window.scrollTo({
         top: sectionTop,
         behavior: "smooth"
       });
-      
+
       // Alternative approach that might work better in some browsers
       setTimeout(() => {
         section.scrollIntoView({
@@ -163,7 +163,7 @@ const Navbar = ({ scrollToTop }) => {
           block: "start"
         });
       }, 10);
-      
+
       // Set active section
       setActiveSection(id);
     } else {
@@ -198,7 +198,7 @@ const Navbar = ({ scrollToTop }) => {
       <div className="w-full flex items-center justify-between">
         {/* Logo - Left */}
         <div className="flex-shrink-0">
-          <button 
+          <button
             onClick={handleHomeNavigation}
             className="logo text-white text-2xl md:text-3xl font-bold flex items-center"
             data-nav="home"
@@ -213,25 +213,25 @@ const Navbar = ({ scrollToTop }) => {
         {/* Navigation Links - Center */}
         <div className="hidden md:flex items-center justify-center flex-1">
           <div className="flex items-center justify-center w-full gap-4 lg:gap-10 xl:gap-16">
-            <NavLink 
-              onClick={handleHomeNavigation} 
+            <NavLink
+              onClick={handleHomeNavigation}
               isActive={activeSection === "hero"}
               label="Home"
               dataNav="home"
               dataSection="hero"
             />
-            <NavLink 
-              onClick={(event) => handleScrollToSection("results", event)} 
+            <NavLink
+              onClick={(event) => handleScrollToSection("results", event)}
               isActive={activeSection === "results"}
               label="Results"
             />
-            <NavLink 
-              onClick={(event) => handleScrollToSection("about", event)} 
+            <NavLink
+              onClick={(event) => handleScrollToSection("about", event)}
               isActive={activeSection === "about"}
               label="About"
             />
-            <NavLink 
-              onClick={(event) => handleScrollToSection("contact", event)} 
+            <NavLink
+              onClick={(event) => handleScrollToSection("contact", event)}
               isActive={activeSection === "contact"}
               label="Contact"
             />
@@ -270,9 +270,9 @@ const Navbar = ({ scrollToTop }) => {
 
       {/* Auth Modal */}
       {isAuthModalOpen && (
-        <AuthModal 
-          isOpen={isAuthModalOpen} 
-          onClose={() => setIsAuthModalOpen(false)} 
+        <AuthModal
+          isOpen={isAuthModalOpen}
+          onClose={() => setIsAuthModalOpen(false)}
           initialMode={authMode}
           onSuccess={handleSuccessfulAuth}
         />
@@ -295,7 +295,7 @@ const NavLink = ({ onClick, label, isActive, dataNav, dataSection }) => {
       )}>
         {label}
       </span>
-      <div 
+      <div
         className={cn(
           "absolute left-0 -bottom-2 h-0.5 bg-blue-400 rounded-full transition-all duration-300",
           isActive ? "w-full" : "w-0 group-hover:w-1/2"
@@ -313,17 +313,17 @@ const NavLink = ({ onClick, label, isActive, dataNav, dataSection }) => {
 
 const AuthModal = ({ isOpen, onClose, initialMode = "login", onSuccess }) => {
   const [mode, setMode] = useState(initialMode);
-  
+
   if (!isOpen) return null;
-  
+
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center">
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       ></div>
-      
+
       {/* Modal */}
       <div className="bg-gradient-to-b from-slate-900 to-slate-800 rounded-xl shadow-xl w-full max-w-md mx-4 overflow-hidden z-10 border border-slate-700">
         {/* Header */}
@@ -331,7 +331,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = "login", onSuccess }) => {
           <h3 className="text-xl font-semibold text-white">
             {mode === "login" ? "Login" : "Create Account"}
           </h3>
-          <button 
+          <button
             onClick={onClose}
             className="text-slate-400 hover:text-white transition-colors"
             aria-label="Close"
@@ -341,7 +341,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = "login", onSuccess }) => {
             </svg>
           </button>
         </div>
-        
+
         {/* Content */}
         <div className="p-6">
           {mode === "login" ? (
@@ -410,7 +410,7 @@ const LoginForm = ({ onSwitchMode, onSuccess }) => {
           onChange={handleChange}
         />
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between">
           <label htmlFor="password" className="block text-sm font-medium text-slate-300">
@@ -430,7 +430,7 @@ const LoginForm = ({ onSwitchMode, onSuccess }) => {
           onChange={handleChange}
         />
       </div>
-      
+
       <button
         type="submit"
         className="w-full py-2 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg shadow hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200"
@@ -446,7 +446,7 @@ const LoginForm = ({ onSwitchMode, onSuccess }) => {
           </span>
         ) : "Sign in"}
       </button>
-      
+
       <div className="mt-4 text-center">
         <p className="text-slate-400">
           Don't have an account?{" "}
@@ -484,7 +484,7 @@ const RegisterForm = ({ onSwitchMode, onSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (formData.password !== formData.confirmPassword) {
       toast({
         title: "Error",
@@ -493,7 +493,7 @@ const RegisterForm = ({ onSwitchMode, onSuccess }) => {
       });
       return;
     }
-    
+
     setIsLoading(true);
 
     try {
@@ -549,7 +549,7 @@ const RegisterForm = ({ onSwitchMode, onSuccess }) => {
           />
         </div>
       </div>
-      
+
       <div className="space-y-2">
         <label htmlFor="registerEmail" className="block text-sm font-medium text-slate-300">
           Email
@@ -564,7 +564,7 @@ const RegisterForm = ({ onSwitchMode, onSuccess }) => {
           onChange={handleChange}
         />
       </div>
-      
+
       <div className="space-y-2">
         <label htmlFor="password" className="block text-sm font-medium text-slate-300">
           Password
@@ -579,7 +579,7 @@ const RegisterForm = ({ onSwitchMode, onSuccess }) => {
           onChange={handleChange}
         />
       </div>
-      
+
       <div className="space-y-2">
         <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-300">
           Confirm Password
@@ -594,7 +594,7 @@ const RegisterForm = ({ onSwitchMode, onSuccess }) => {
           onChange={handleChange}
         />
       </div>
-      
+
       <button
         type="submit"
         className="w-full py-2 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg shadow hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200"
@@ -610,7 +610,7 @@ const RegisterForm = ({ onSwitchMode, onSuccess }) => {
           </span>
         ) : "Create Account"}
       </button>
-      
+
       <div className="mt-4 text-center">
         <p className="text-slate-400">
           Already have an account?{" "}
