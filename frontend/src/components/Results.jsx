@@ -26,7 +26,7 @@ const Results = () => {
           <ResultCard
             title="Sentinel-5P NO2 Data Downscaling"
             description="This application processes and visualizes Sentinel-5P satellite NO₂ data through interactive maps that display global pollution patterns. It enhances the data quality by downscaling low-resolution air quality measurements to higher resolution using multiple scientific techniques including Gaussian smoothing, bilinear/cubic interpolation, and machine learning-based regression. The tool provides comprehensive analysis capabilities by comparing original and processed data through difference maps and statistical metrics, while also offering export options to facilitate further research and reporting."
-            link="https://vidhi2004-downscalingi-website-app-ezsu40.streamlit.app/"
+            link="https://vidhi2004-downscalingi-website-app-lkoqrn.streamlit.app/"
             className="w-full md:w-1/2 bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition"
           />
 
