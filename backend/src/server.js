@@ -6,10 +6,17 @@ const authRoutes = require('./routes/auth');
 
 // Initialize express app
 const app = express();
-const port = 5001; // Hardcoded port instead of using env variable
+const port = process.env.PORT || 5001; // Hardcoded port instead of using env variable
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:8080",
+    "https://air-q-ecru.vercel.app"
+  ],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Routes
